@@ -2,7 +2,9 @@
 #include "TextureManager.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "vector"
+#include "LoaderParams.h"
 
 class Game
 {
