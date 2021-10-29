@@ -17,7 +17,6 @@ class Game
   private:
   SDL_Window* m_pWindow;
   SDL_Renderer* m_pRenderer;
-  TextureManager m_textureManager;
   int m_currentFrame;
   bool m_bRunning;
 };
