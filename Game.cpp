@@ -13,18 +13,16 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
       m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
       if(m_pRenderer != 0)
       {
-        SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
+        SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp");
         m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-        SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
-        m_destinationRectangle.w = 100;
-        m_destinationRectangle.h = 100;
-        m_sourceRectangle.w = 150;
-        m_sourceRectangle.h = 100;
 
-        m_destinationRectangle.x = 100;
-        m_destinationRectangle.y = 100;
-        m_sourceRectangle.x = 50;
-        m_sourceRectangle.y = 50;
+        m_destinationRectangle.w = 128;
+        m_destinationRectangle.h = 82;
+        m_sourceRectangle.w = 128;
+        m_sourceRectangle.h = 82;
+
+        m_destinationRectangle.x = m_sourceRectangle.x = 0;
+        m_destinationRectangle.y = m_sourceRectangle.y = 0;
         SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
       }
       else
@@ -47,7 +45,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
-
+  m_sourceRectangle.x = 128 * ((SDL_GetTicks() / 100) % 6);
 }
 
 void Game::render()
