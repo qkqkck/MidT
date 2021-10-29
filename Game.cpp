@@ -1,10 +1,9 @@
 #include "Game.h"
 #include "SDL_image.h"
 
-SDL_Window* m_pWindow = 0;
-SDL_Renderer* m_pRenderer = 0;
+Game* Game::s_pInstance = 0;
 
-bool Game::init(const char *title, int xpos, int ypos, int width, int height, int flags)
+bool TheGame::init(const char *title, int xpos, int ypos, int width, int height, int flags)
 {
   if(SDL_Init(SDL_INIT_EVERYTHING) == 0)
   {
@@ -46,7 +45,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
   return true;
 }
 
-void Game::update()
+void TheGame::update()
 {
   for(int i=0; i<m_gameObjects.size(); i++)
   {
@@ -54,7 +53,7 @@ void Game::update()
   }
 }
 
-void Game::render()
+void TheGame::render()
 {
   SDL_RenderClear(m_pRenderer);
   for(int i=0; i<m_gameObjects.size(); i++)
@@ -64,12 +63,12 @@ void Game::render()
   SDL_RenderPresent(m_pRenderer);
 }
 
-bool Game::running()
+bool TheGame::running()
 {
   return m_bRunning;
 }
 
-void Game::handleEvents()
+void TheGame::handleEvents()
 {
   SDL_Event event;
   if(SDL_PollEvent(&event))
@@ -85,7 +84,7 @@ void Game::handleEvents()
   }
 }
 
-void Game::clean()
+void TheGame::clean()
 {
   SDL_DestroyWindow(m_pWindow);
   SDL_DestroyRenderer(m_pRenderer);
